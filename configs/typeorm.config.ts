@@ -13,7 +13,7 @@ export const typeOrmConfig : TypeOrmModuleOptions ={
   "username": "mycv",
   "password": process.env.DB_PASSWORD,
   "database": process.env.DB_NAME,
-  "entities": ["dist/**/**.entity{.ts,.js}",User],
+  "entities": ["dist/**/**.entity{.ts,.js}",User,Report],
   "synchronize": true
 
 }
