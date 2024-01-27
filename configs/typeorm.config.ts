@@ -10,7 +10,7 @@ export const typeOrmConfig : TypeOrmModuleOptions ={
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "username": "mycv",
+  "username": process.env.DB_USER,
   "password": process.env.DB_PASSWORD,
   "database": process.env.DB_NAME,
   "entities": ["dist/**/**.entity{.ts,.js}",User,Report],
