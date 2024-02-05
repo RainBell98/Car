@@ -4,10 +4,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
-import { User } from "./users/user.entity";
-import { Report } from "./reports/report.entity";
 import { typeOrmConfig } from "../configs/typeorm.config";
 import { APP_PIPE } from "@nestjs/core";
+import { ConfigService } from "@nestjs/config";
 const cookieSession = require('cookie-session')
 @Module({
   imports: [UsersModule, ReportsModule,
@@ -24,9 +23,13 @@ const cookieSession = require('cookie-session')
   ],
 })
 export class AppModule {
+  constructor(
+    private configService:ConfigService
+  ) {
+  }
   configure(consumer: MiddlewareConsumer){
     consumer.apply(cookieSession({
-      keys:['asdfasdf']
+      keys:[this.configService.get('COOKIE_KEY')]
     })
     ).forRoutes('*')
   }
